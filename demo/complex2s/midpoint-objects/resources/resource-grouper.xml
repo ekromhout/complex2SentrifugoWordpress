@@ -38,7 +38,7 @@
     </connectorRef>
     <connectorConfiguration>
         <icfc:configurationProperties>
-            <rest:baseUrl>https://192.168.56.101:9443</rest:baseUrl>
+            <rest:baseUrl>https://grouper-ws:443</rest:baseUrl>
             <rest:username>banderson</rest:username>
             <rest:password>password</rest:password>
             <rest:superGroup>etc:midpointGroups</rest:superGroup>
@@ -66,7 +66,7 @@
         <connectorConfiguration>
             <conf:sources>
                 <amqp091>
-                    <uri>amqp://192.168.56.101:5672</uri>
+                    <uri>amqp://mq:5672</uri>
                     <username>guest</username>
                     <password>guest</password>
                     <queue>sampleQueue</queue>

@@ -1,3 +1,3 @@
 maintainer="tier"
 imagename="midpoint"
-tag="latest"
+tag="laboratory"

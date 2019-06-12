@@ -24,6 +24,72 @@
          <channel>http://midpoint.evolveum.com/xml/ns/public/gui/channels-3#init</channel>
       </operationExecution>
       <globalSecurityPolicyRef xmlns:tns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" oid="00000000-0000-0000-0000-000000000120" relation="org:default" type="tns:SecurityPolicyType"/>
+      <modelHooks>
+         <change>
+            <hook>
+               <name>Recompute affected users</name>
+               <state>final</state>
+               <focusType>OrgType</focusType>
+               <script>
+                  <code>
+                      import com.evolveum.midpoint.prism.delta.*
+                      import com.evolveum.midpoint.xml.ns._public.common.common_3.*
+                      import com.evolveum.midpoint.prism.path.*
+ 
+                      log.info('Starting Org change hook execution')
+
+                      affectedUsers = new HashSet()
+                        
+                      MEMBER_PATH = ItemPath.create(ObjectType.F_EXTENSION, 'member')
+                        
+                      for (delta in modelContext.allChanges) {
+                         if (delta.objectTypeClass == OrgType.class) {
+                            log.info('Found Org delta: {}', delta)
+                            if (delta.isDelete()) {
+                               addFromObject(affectedUsers, modelContext.focusContext.objectOld)
+                            } else {
+                               memberDelta = delta.findPropertyDelta(MEMBER_PATH)
+                               if (memberDelta != null) {
+                                  log.info('Found member delta: {}', memberDelta)
+                                  if (memberDelta.isReplace()) {
+                                     addFromObject(affectedUsers, modelContext.focusContext.objectOld)
+                                     addFromValues(affectedUsers, memberDelta.valuesToReplace)
+                                  } else {
+                                     addFromValues(affectedUsers, memberDelta.valuesToAdd)
+                                     addFromValues(affectedUsers, memberDelta.valuesToDelete)
+                                  }
+                               }
+                            }
+                         }
+                      }
+                      log.info('Affected users = {}', affectedUsers)
+                      for (userName in affectedUsers) {
+                         user = midpoint.searchObjectByName(UserType.class, userName)
+                         if (user != null) {
+                            midpoint.addRecomputeTrigger(user, null)
+                            log.info('Recompute trigger added to {}', user)
+                         } else {
+                            log.warn('User {} couldn\'t be found', userName)
+                         }
+                      }
+                      log.info('Finishing Org change hook execution')
+                        
+                      def addFromObject(users, object) {
+                         addFromValues(users, object?.findExtensionItem('member')?.values)
+                      }
+                      def addFromValues(users, values) {
+                         if (values != null) {
+                            for (value in values) {
+                               users.add(value.realValue)
+                            }
+                         }
+                      }
+                  </code>
+               </script>
+            </hook>
+         </change>
+      </modelHooks>
+
       <logging>
          <classLogger id="1">
             <level>ERROR</level>
