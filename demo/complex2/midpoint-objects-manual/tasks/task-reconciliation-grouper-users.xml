@@ -26,7 +26,8 @@
 	<extension xmlns:mext="http://midpoint.evolveum.com/xml/ns/public/model/extension-3"
 			   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="c:ExtensionType">
 		<mext:objectclass>ri:AccountObjectClass</mext:objectclass>
-	</extension>
+                <mext:tracingInterval>2000</mext:tracingInterval>
+ 	</extension>
 	<taskIdentifier>42aa9f43-64c5-41a6-814c-b58b9ea4e204</taskIdentifier>
 	<ownerRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType">
 		<!-- administrator -->
