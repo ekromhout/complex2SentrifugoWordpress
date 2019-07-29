@@ -1,29 +1,7 @@
 <systemConfiguration xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:apti="http://midpoint.evolveum.com/xml/ns/public/common/api-types-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="00000000-0000-0000-0000-000000000001" version="2">
       <name>SystemConfiguration</name>
-      <metadata>
-         <requestTimestamp>2018-08-15T13:30:55.282+02:00</requestTimestamp>
-         <createTimestamp>2018-08-15T13:30:55.372+02:00</createTimestamp>
-         <createChannel>http://midpoint.evolveum.com/xml/ns/public/gui/channels-3#init</createChannel>
-      </metadata>
-      <operationExecution id="17">
-         <timestamp>2018-08-15T13:30:55.562+02:00</timestamp>
-         <operation>
-            <objectDelta>
-               <t:changeType>add</t:changeType>
-               <t:objectType>c:SystemConfigurationType</t:objectType>
-            </objectDelta>
-            <executionResult>
-               <operation>com.evolveum.midpoint.model.impl.lens.ChangeExecutor.executeDelta</operation>
-               <status>handled_error</status>
-               <token>1000000000000000009</token>
-               <message>Object of type 'SystemConfigurationType' with oid '00000000-0000-0000-0000-000000000001' was not found.</message>
-            </executionResult>
-            <objectName>SystemConfiguration</objectName>
-         </operation>
-         <status>handled_error</status>
-         <channel>http://midpoint.evolveum.com/xml/ns/public/gui/channels-3#init</channel>
-      </operationExecution>
       <globalSecurityPolicyRef xmlns:tns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" oid="00000000-0000-0000-0000-000000000120" relation="org:default" type="tns:SecurityPolicyType"/>
+<!--
       <modelHooks>
          <change>
             <hook>
@@ -89,7 +67,7 @@
             </hook>
          </change>
       </modelHooks>
-
+  -->
       <logging>
          <classLogger id="1">
             <level>ERROR</level>
@@ -271,6 +249,9 @@
              </profile>
          </tracing>
       </internals>
+      <deploymentInformation>
+         <name>demo/complex2s</name>
+      </deploymentInformation>
       <adminGuiConfiguration>
          <userDashboardLink id="13">
             <targetUrl>/self/profile</targetUrl>
@@ -312,6 +293,6 @@
             <color>purple</color>
             <authorization>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#resources</authorization>
          </userDashboardLink>
-         <enableExperimentalFeatures>false</enableExperimentalFeatures>
+         <enableExperimentalFeatures>true</enableExperimentalFeatures>
       </adminGuiConfiguration>
    </systemConfiguration>

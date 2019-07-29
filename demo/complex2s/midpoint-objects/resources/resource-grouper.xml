@@ -130,15 +130,6 @@
             <attribute>
                 <ref>ri:member</ref>
                 <fetchStrategy>explicit</fetchStrategy>
-                <inbound>
-                    <strength>strong</strength>
-                    <target>
-                        <path>extension/member</path>
-                        <c:set>
-                            <c:predefined>all</c:predefined>
-                        </c:set>
-                    </target>
-                </inbound>
             </attribute>
         </objectType>
     </schemaHandling>
