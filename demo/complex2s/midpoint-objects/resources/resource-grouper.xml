@@ -130,6 +130,7 @@
             <attribute>
                 <ref>ri:member</ref>
                 <fetchStrategy>explicit</fetchStrategy>
+                <storageStrategy>indexOnly</storageStrategy>
             </attribute>
         </objectType>
     </schemaHandling>
@@ -141,20 +142,14 @@
             <objectClass>ri:CustomPlainGroupObjectClass</objectClass>
             <focusType>OrgType</focusType>
             <correlation>
-                <q:and>
-                    <q:equal>
-                        <q:path>identifier</q:path>
-                        <expression>
-                            <path>
-                                $account/attributes/name
-                            </path>
-                        </expression>
-                    </q:equal>
-                    <q:equal>
-                        <q:path>subtype</q:path>
-                        <q:value>grouper-group</q:value>
-                    </q:equal>
-                </q:and>
+                <q:equal>
+                    <q:path>extension/grouperName</q:path>
+                    <expression>
+                        <path>
+                            $account/attributes/name
+                        </path>
+                    </expression>
+                </q:equal>
             </correlation>
             <reaction>
                 <situation>linked</situation>

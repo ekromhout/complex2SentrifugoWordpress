@@ -247,6 +247,24 @@
                      <level>normal</level>
                  </tracingTypeProfile>
              </profile>
+             <profile>
+                 <name>functional-with-full-log</name>
+                 <displayName>Functional tracing with full logging</displayName>
+                 <visible>true</visible>
+                 <fileNamePattern>functional-trace %{timestamp} %{focusName}</fileNamePattern>
+                 <createRepoObject>true</createRepoObject>
+                 <compressOutput>true</compressOutput>
+                 <collectLogEntries>true</collectLogEntries>
+                 <loggingOverride>
+                    <levelOverride>
+                        <logger>com.evolveum.midpoint</logger>
+                        <level>TRACE</level>
+                    </levelOverride>
+                 </loggingOverride>
+                 <tracingTypeProfile>
+                     <level>normal</level>
+                 </tracingTypeProfile>
+             </profile>
          </tracing>
       </internals>
       <deploymentInformation>
