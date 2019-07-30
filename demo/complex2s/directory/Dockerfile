@@ -4,7 +4,7 @@ LABEL author="tier-packaging@internet2.edu <tier-packaging@internet2.edu>"
 
 RUN yum install -y epel-release \
     && yum update -y \
-    && yum install -y 389-ds-base 389-admin 389-adminutil \
+    && yum install -y 389-ds-base \
     && yum clean all \
     && rm -rf /var/cache/yum
 
