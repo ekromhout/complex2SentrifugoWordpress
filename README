@@ -1,0 +1,8 @@
+# Adds a configured Sentrifugo and
+# Wordpress containers to the complex2
+# demo from Pavol Mederly's labratory
+# branch https://spaces.at.internet2.edu/display/MID/Experiments+with+different+integration+approaches
+# This adds connectors for messages to
+# create and update users from Sentrifugo
+# (mock HR) via AMQP, and to provision
+# and update users and roles in Wordpress.
