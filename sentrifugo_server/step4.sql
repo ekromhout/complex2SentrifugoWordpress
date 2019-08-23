@@ -1,0 +1,2 @@
+#$query1 = "UPDATE main_mail_settings SET tls='".$tls."', port=".$port.", auth='".$auth."', username='".$username."', password='".$password."', server_name='".$smtpserver."', createddate='".$date."', modifieddate='".$date."' ";
+INSERT INTO main_mail_settings (tls,auth, port,username,password,server_name,createddate,modifieddate) VALUES ('true','true',587,'sentrifugo.container@gmail.com','GzQaVm7kxFm6sF65','smtp.gmail.com',now(),now());

@@ -1,0 +1,16 @@
+update main_users  set emppassword = 'af31300a65ad8e2668302dab2e6e7908' where id = 1;
+INSERT INTO `main_jobtitles` VALUES (1,'DEV','Developer',NULL,NULL,'D6','1',NULL,1,1,'2019-05-20 12:57:53','2019-05-20 12:57:53',1),(2,'DEVMGR','Development Manager',NULL,NULL,'M6','1',NULL,1,1,'2019-05-20 12:58:05','2019-05-20 12:58:05',1);
+INSERT INTO `main_organisationinfo` VALUES (1,'UNC Chapel Hill',NULL,NULL,'www.unc.edu',NULL,5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,224,1313,3854,NULL,NULL,NULL,NULL,NULL,NULL,1,1,'2019-05-15 18:58:31','2019-05-15 18:58:31',1);
+INSERT INTO `main_payfrequency` VALUES (1,'monthly','MM',NULL,1,1,'2019-05-20 12:57:24','2019-05-20 12:57:24',1);
+INSERT INTO `main_businessunits` VALUES (1,'ITS','WANM',NULL,NULL,224,1313,3854,'440 West Franklin Street\nChapel Hill, NC 27599',NULL,NULL,1,NULL,1,1,1,'2019-05-13 14:17:15','2019-05-13 14:17:15',1);
+INSERT INTO `main_departments` VALUES (1,'ITS Franklin','ZLYE',NULL,NULL,224,1313,3854,'440 West Franklin\r\nChapel Hill, NC 27510',NULL,NULL,1,NULL,1,1,1,'2019-05-13 14:17:53','2019-05-13 14:17:53',1);
+INSERT INTO `main_jobtitles` VALUES (1,'DEVMGR','Development Manager',NULL,NULL,'M6','1',NULL,1,1,'2019-05-13 14:20:45','2019-05-13 14:20:45',1),(2,'DEV','Developer',NULL,NULL,'D6','1',NULL,1,1,'2019-05-13 14:22:29','2019-05-13 14:22:29',1);
+INSERT INTO `main_positions` VALUES (1,'Developer Manager 1',1,NULL,1,1,'2019-05-13 14:21:00','2019-05-13 14:21:00',1),(2,'Developer 1',2,NULL,1,1,'2019-05-13 14:22:50','2019-05-13 14:22:50',1)
+INSERT INTO `main_states` VALUES (1,224,'North Carolina','',1313,1,1,'2019-05-15 18:57:59','2019-05-15 18:57:59',1);
+INSERT INTO `main_timezone` VALUES (1,152,'America/New_York','EDT','-04:00','',1,1,'2019-05-15 18:59:24','2019-05-15 18:59:24',1);
+INSERT INTO `main_cities` VALUES (1,224,1313,'Raleigh',3854,1,1,'2019-05-15 18:58:11','2019-05-15 18:58:11',1);
+INSERT INTO `main_countries` VALUES (1,'United States','USA',NULL,1,1,'2019-05-15 18:57:38','2019-05-15 18:57:38',1,224);
+INSERT INTO `main_departments` VALUES (1,'Research Computing','RC',NULL,NULL,224,1313,3854,'211 Manning Drive\r\nChapel Hill NC 27599',NULL,NULL,1,NULL,1,1,1,'2019-05-20 13:01:12','2019-05-20 13:01:12',1);
+INSERT INTO `main_organisationinfo` VALUES (1,'UNC Chapel Hill',NULL,NULL,'www.unc.edu',NULL,5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,224,1313,3854,NULL,NULL,NULL,NULL,NULL,NULL,1,1,'2019-05-15 18:58:31','2019-05-15 18:58:31',1);
+INSERT INTO `main_employmentstatus` VALUES (1,'P',3,0,NULL,1,1,'2019-05-20 12:59:01','2019-05-20 12:59:01',1);
+

@@ -1,0 +1,1 @@
+insert into main_users (id,emprole,userstatus,firstname,lastname,userfullname,emailaddress,backgroundchk_status,emppassword,isactive,employeeId) values (2,1,'old','Brian','Anderson','Brian Anderson','sentrifugo.container@gmail.com','Not Applicable','5f4dcc3b5aa765d61d8327deb882cf99',1,'banderson');
