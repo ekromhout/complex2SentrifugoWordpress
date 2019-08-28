@@ -14,7 +14,7 @@
     </inducement>
     <inducement id="2">
         <construction>
-            <resourceRef oid="0a37121f-d515-4a23-9b6d-554c5ef61272" relation="org:default" type="c:ResourceType" />     <!-- OpenLDAP for Grouper (i-data) -->
+            <resourceRef oid="0a37121f-d515-4a23-9b6d-554c5ef61272" relation="org:default" type="c:ResourceType" />     <!-- LDAP -->
             <attribute>
                 <ref>ri:businessCategory</ref>
                 <outbound>

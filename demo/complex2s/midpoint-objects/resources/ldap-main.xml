@@ -19,7 +19,7 @@
 	xmlns:mr="http://prism.evolveum.com/xml/ns/public/matching-rule-3"
 	xmlns:cap="http://midpoint.evolveum.com/xml/ns/public/resource/capabilities-3">
 
-		<name>OpenLDAP (directory)</name>
+		<name>LDAP (directory)</name>
 
 		<connectorRef type="ConnectorType">
 			<filter>
