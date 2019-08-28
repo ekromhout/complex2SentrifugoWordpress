@@ -1,6 +1,6 @@
 # Adds a configured Sentrifugo and
 # Wordpress containers to the complex2
-# demo from Pavol Mederly's labratory
+# demo from Pavol Mederly's laboratory
 # branch https://spaces.at.internet2.edu/display/MID/Experiments+with+different+integration+approaches
 # This adds connectors for messages to
 # create and update users from Sentrifugo
