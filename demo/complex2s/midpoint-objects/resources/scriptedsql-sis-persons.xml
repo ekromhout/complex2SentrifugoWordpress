@@ -42,7 +42,7 @@
 			<icscscriptedsql:testScriptFileName>/opt/midpoint/var/res/sis-persons/TestScript.groovy</icscscriptedsql:testScriptFileName>
 			<icscscriptedsql:schemaScriptFileName>/opt/midpoint/var/res/sis-persons/SchemaScript.groovy</icscscriptedsql:schemaScriptFileName>
 			
-			<icscscriptedsql:reloadScriptOnExecution>true</icscscriptedsql:reloadScriptOnExecution>
+			<icscscriptedsql:reloadScriptOnExecution>false</icscscriptedsql:reloadScriptOnExecution>
 			<!-- >icscscriptedsql:syncScriptFileName>/opt/midpoint/var/res/SyncScript.groovy</icscscriptedsql:syncScriptFileName -->
 
 			<icscscriptedsql:validConnectionQuery></icscscriptedsql:validConnectionQuery>
