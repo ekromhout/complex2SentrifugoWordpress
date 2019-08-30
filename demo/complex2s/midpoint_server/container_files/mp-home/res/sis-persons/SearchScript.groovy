@@ -60,11 +60,10 @@ log.info("Entering "+action+" Script");
 def sql = new Sql(connection);
 def result = []
 def where = "";
+def sqlParams = null
 
 switch ( objectClass ) {
     case "__ACCOUNT__":
-
-    sqlParams = [:]
 
     uidColumn = 'uid'
     nameColumn = 'uid'
@@ -94,6 +93,7 @@ switch ( objectClass ) {
               break;
       }
 
+      sqlParams = [:]
       sqlParams.put(left, right)
       right = ":" + left
 
@@ -111,25 +111,39 @@ switch ( objectClass ) {
       ]
 
       def wt = whereTemplates.get(operation)
-      def binding = [left: left, right: right, not: query.get("not")]
-      def template = engine.createTemplate(wt).make(binding)
-      where = ' where ' + template.toString()
-
-      log.info("Where clause: {0}, with parameters {1}", where, sqlParams)
+      if (wt != null) {
+        def binding = [left: left, right: right, not: query.get("not")]
+        def template = engine.createTemplate(wt).make(binding)
+        where = ' where ' + template.toString()
+        log.info("Where clause: {0}, with parameters {1}", where, sqlParams)
+      } else {
+        log.warn('Unsupported query: {0}, continuing without WHERE clause (worsening the performance)', query)
+        sqlParams = null
+        where = ''
+      }
     }
 
     q = 'select uid, surname, givenName, fullName, mail from SIS_PERSONS' + where
 
     log.info('query = {0}', query)
     log.info('sql = {0}', q)
-    sql.eachRow(sqlParams, q, {result.add([
-	__UID__:it.uid, 
-	__NAME__:it.uid, 
-	uid:it.uid,
-	surname:it.surname,
-	givenName:it.givenName,
-	fullName:it.fullName,
-	mail:it.mail])} );
+    log.info('sqlParams = {0}', sqlParams)
+   
+    def processRow = { row -> result.add([
+	__UID__:row.uid, 
+	__NAME__:row.uid, 
+	uid:row.uid,
+	surname:row.surname,
+	givenName:row.givenName,
+	fullName:row.fullName,
+	mail:row.mail])
+    }
+
+    if (sqlParams != null) {
+      sql.eachRow(sqlParams, q, processRow)
+    } else {
+      sql.eachRow(q, processRow)
+    }
     break
 
     default:
