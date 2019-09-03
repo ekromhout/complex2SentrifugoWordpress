@@ -70,7 +70,7 @@ switch ( objectClass ) {
 
     log.info("Building where clause, query {0}, uidcolumn {1}, nameColumn {2}", query, uidColumn, nameColumn)
 
-    String left = query.get("left")
+    String left = query?.get("left")
     if (left != null) {
       if (Uid.NAME.equals(left)) {
           left = uidColumn
