@@ -112,18 +112,18 @@
                     <expression>
                         <script>
                             <code>
-                                import com.evolveum.midpoint.schema.util
-                                import com.evolveum.midpoint.schema.constants
+                                import com.evolveum.midpoint.schema.util.*
+                                import com.evolveum.midpoint.schema.constants.*
                                 
                                 if (input == null) {
                                     null
                                 } else {
-                                    archetypeOid = '5f2b96d2-49b5-4a8a-9601-14457309a69b'       // generic-grouper-group
+                                    archetypeOid = '5f2b96d2-49b5-4a8a-9601-14457309a69b'       // generic-grouper-group archetype
                                     switch (input) {
-                                        case ~/ref:affiliation:.*/: archetypeOid = '56f53812-047d-4b69-83e8-519a73d161e1'; break;
-                                        case ~/ref:dept:.*/: archetypeOid = '1cec5f78-8fba-459b-9547-ef7485009f40'; break;
-                                        case ~/ref:course:.*/: archetypeOid = '3dab9a72-118b-4e40-a138-bb691c335eca'; break;
-                                        case ~/app:mailinglist:.*/: archetypeOid = '1645d1dc-1f7c-4508-b50b-97b501ccdee3'; break;
+                                        case ~/ref:affiliation:.*/: archetypeOid = '56f53812-047d-4b69-83e8-519a73d161e1'; break;   // affiliation archetype
+                                        case ~/ref:dept:.*/: archetypeOid = '1cec5f78-8fba-459b-9547-ef7485009f40'; break;          // department archetype
+                                        case ~/ref:course:.*/: archetypeOid = '3dab9a72-118b-4e40-a138-bb691c335eca'; break;        // course archetype
+                                        case ~/app:mailinglist:.*/: archetypeOid = '1645d1dc-1f7c-4508-b50b-97b501ccdee3'; break;   // mailing-list archetype
                                     }
                                     ObjectTypeUtil.createAssignmentTo(archetypeOid, ObjectTypes.ARCHETYPE, prismContext)
                                 }
