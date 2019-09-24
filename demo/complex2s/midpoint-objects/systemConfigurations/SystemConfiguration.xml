@@ -134,36 +134,6 @@
             <details>false</details>
          </auditing>
       </logging>
-      <defaultObjectPolicyConfiguration id="18">
-         <type>OrgType</type>
-         <subtype>affiliation</subtype>
-         <objectTemplateRef xmlns:tns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" oid="d87aa04f-189c-4d6f-b6e1-216dad622142" relation="org:default" type="tns:ObjectTemplateType"/>
-      </defaultObjectPolicyConfiguration>
-      <defaultObjectPolicyConfiguration id="19">
-         <type>OrgType</type>
-         <subtype>department</subtype>
-         <objectTemplateRef xmlns:tns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" oid="0caf2f69-7c72-4946-b218-d84e78b2a057" relation="org:default" type="tns:ObjectTemplateType"/>
-      </defaultObjectPolicyConfiguration>
-      <defaultObjectPolicyConfiguration id="20">
-         <type>OrgType</type>
-         <subtype>course</subtype>
-         <objectTemplateRef xmlns:tns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" oid="d35bdec6-643b-41d8-ad5d-8eeb701169d1" relation="org:default" type="tns:ObjectTemplateType"/>
-      </defaultObjectPolicyConfiguration>
-      <defaultObjectPolicyConfiguration id="110">
-         <type>OrgType</type>
-         <subtype>mailing-list</subtype>
-         <objectTemplateRef xmlns:tns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" oid="be84a39a-c004-490b-9b78-a871b837f6df" relation="org:default" type="tns:ObjectTemplateType"/>
-      </defaultObjectPolicyConfiguration>
-      <defaultObjectPolicyConfiguration id="100">
-         <type>OrgType</type>
-         <subtype>generic-group</subtype>
-         <objectTemplateRef xmlns:tns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" oid="e2a6193a-8981-4143-9da1-9a7b32c0b819" relation="org:default" type="tns:ObjectTemplateType"/>
-      </defaultObjectPolicyConfiguration>
-      <defaultObjectPolicyConfiguration id="21">
-         <type>RoleType</type>
-         <subtype>midpoint-group</subtype>
-         <objectTemplateRef xmlns:tns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" oid="804f8658-0828-4dab-a2ed-f13985e4f80b" relation="org:default" type="tns:ObjectTemplateType"/>
-      </defaultObjectPolicyConfiguration>
       <defaultObjectPolicyConfiguration id="101">
          <type>UserType</type>
          <objectTemplateRef xmlns:tns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" oid="8098b124-c20c-4965-8adf-e528abedf7a4" relation="org:default" type="tns:ObjectTemplateType"/>
@@ -247,24 +217,42 @@
                      <level>normal</level>
                  </tracingTypeProfile>
              </profile>
-             <profile>
-                 <name>functional-with-full-log</name>
-                 <displayName>Functional tracing with full logging</displayName>
-                 <visible>true</visible>
-                 <fileNamePattern>functional-trace %{timestamp} %{focusName}</fileNamePattern>
-                 <createRepoObject>true</createRepoObject>
-                 <compressOutput>true</compressOutput>
-                 <collectLogEntries>true</collectLogEntries>
-                 <loggingOverride>
+            <profile>
+                <name>functional-model-logging</name>
+                <displayName>Functional tracing (with model logging)</displayName>
+                <visible>true</visible>
+                <fileNamePattern>functional-trace %{timestamp} %{focusName}</fileNamePattern>
+                <createRepoObject>true</createRepoObject>
+                <compressOutput>true</compressOutput>
+                <collectLogEntries>true</collectLogEntries>
+                <loggingOverride>
                     <levelOverride>
-                        <logger>com.evolveum.midpoint</logger>
+                        <logger>com.evolveum.midpoint.model</logger>
                         <level>TRACE</level>
                     </levelOverride>
-                 </loggingOverride>
-                 <tracingTypeProfile>
-                     <level>normal</level>
-                 </tracingTypeProfile>
-             </profile>
+                </loggingOverride>
+                <tracingTypeProfile>
+                    <level>normal</level>
+                </tracingTypeProfile>
+            </profile>
+            <profile>
+                <name>functional-sql-logging</name>
+                <displayName>Functional tracing (with SQL logging)</displayName>
+                <visible>true</visible>
+                <fileNamePattern>functional-trace %{timestamp} %{focusName}</fileNamePattern>
+                <createRepoObject>true</createRepoObject>
+                <compressOutput>true</compressOutput>
+                <collectLogEntries>true</collectLogEntries>
+                <loggingOverride>
+                    <levelOverride>
+                        <logger>org.hibernate.SQL</logger>
+                        <level>TRACE</level>
+                    </levelOverride>
+                </loggingOverride>
+                <tracingTypeProfile>
+                    <level>normal</level>
+                </tracingTypeProfile>
+            </profile>
          </tracing>
       </internals>
       <deploymentInformation>
