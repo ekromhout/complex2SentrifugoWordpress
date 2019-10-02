@@ -10,7 +10,7 @@ RUN rpm --import http://repos.azulsystems.com/RPM-GPG-KEY-azulsystems
 RUN curl -o /etc/yum.repos.d/zulu.repo http://repos.azulsystems.com/rhel/zulu.repo
 RUN yum -y update
 RUN yum -y install \
- 	zulu-8 \
+ 	zulu-11 \
         cron \
         supervisor \
 	libcurl \
