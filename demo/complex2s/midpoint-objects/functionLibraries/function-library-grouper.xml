@@ -92,8 +92,11 @@
 				import com.evolveum.midpoint.schema.util.*
 				import com.evolveum.midpoint.prism.path.*
                 import com.evolveum.midpoint.schema.constants.*
+                import com.evolveum.midpoint.prism.delta.*
                 
                 PLAIN_GROUP_OBJECT_CLASS = new ItemName(MidPointConstants.NS_RI, 'CustomPlainGroupObjectClass')
+                TRIGGER_FIRE_AFTER = 60000
+                TRIGGER_SAFETY_MARGIN = 10000
 
 				esbEvent = midpoint.getMessageBodyAsMap(message)['esbEvent'][0]
 				log.info('esbEvent = {}', esbEvent)
@@ -120,6 +123,10 @@
 						return null
 					}
 					subjectId = esbEvent['subjectId']
+                    if (subjectId == null) {
+                        log.info('Null subject ID in membership change message, ignoring it: {}', sourceId)
+                        return null
+                    }
 					log.info('### {} - {} - {}', subjectId, eventType, groupName)
 					identifiers = new HashMap()
 					identifiers.put(ICFS_NAME, groupName)
@@ -132,6 +139,12 @@
 					delta = new ObjectDeltaType()
 					delta.changeType = ChangeTypeType.MODIFY
 					delta.itemDelta.add(itemDelta)
+                    
+                    added = midpoint
+                            .getOptimizingTriggerCreator(TRIGGER_FIRE_AFTER, TRIGGER_SAFETY_MARGIN)
+                            .createForNamedUser(subjectId)
+                    log.info('Recompute trigger for {}: {}', subjectId, added ? 'added' : 'not added (already present or user not found)')
+                    
 					return UcfChangeUtil.create(PLAIN_GROUP_OBJECT_CLASS, identifiers, delta, prismContext)
 				} else if (eventType == 'GROUP_ADD' || eventType == 'GROUP_DELETE') {
 					groupName = esbEvent['name']
