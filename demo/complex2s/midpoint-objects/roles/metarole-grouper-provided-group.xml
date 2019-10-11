@@ -1,4 +1,11 @@
-<role xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" 
+<!--
+  ~ Copyright (c) 2019 Evolveum and contributors
+  ~
+  ~ This work is dual-licensed under the Apache License 2.0
+  ~ and European Union Public License. See LICENSE file for details.
+  -->
+
+<role xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3"
       xmlns:apti="http://midpoint.evolveum.com/xml/ns/public/common/api-types-3" 
       xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" 
       xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" 
@@ -139,6 +146,38 @@
                 </expression>
                 <target>
                     <path>displayName</path>
+                </target>
+            </mapping>
+
+            <mapping>
+                <name>lifecycle state</name>
+                <description>This mapping sets org lifecycle state to be either "active" or "retired", depending on
+                    whether Grouper group for this org still exists. Orgs in the latter state are on the way to deletion:
+                    their members are unassigned and after no members are there, the org is automatically deleted.</description>
+                <strength>strong</strength>
+                <expression>
+                    <script>
+                        <code>
+                            import com.evolveum.midpoint.model.impl.expr.*
+                            import com.evolveum.midpoint.schema.*
+                            import com.evolveum.midpoint.xml.ns._public.common.common_3.*
+
+                            GROUPER_RESOURCE_OID = '1eff65de-5bb6-483d-9edf-8cc2c2ee0233'
+
+                            modelContext = ModelExpressionThreadLocalHolder.lensContext
+                            rsd = new ResourceShadowDiscriminator(GROUPER_RESOURCE_OID, ShadowKindType.ENTITLEMENT, 'group', null, false)
+                            if (modelContext.findProjectionContext(rsd) != null) {
+                                log.info('Projection context for Grouper group found, marking as "active"')
+                                'active'
+                            } else {
+                                log.info('No projection context for Grouper group, marking as "retired"')
+                                'retired'
+                            }
+                        </code>
+                    </script>
+                </expression>
+                <target>
+                    <path>lifecycleState</path>
                 </target>
             </mapping>
         </focusMappings>
