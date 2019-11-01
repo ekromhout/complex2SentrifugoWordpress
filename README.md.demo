@@ -1,4 +1,4 @@
-[![Build Status](https://jenkins.testbed.tier.internet2.edu/job/docker/job/midPoint_container/job/master/badge/icon)](https://jenkins.testbed.tier.internet2.edu/job/docker/job/midPoint_container/job/master/)
+[![Build Status](https://jenkins.testbed.tier.internet2.edu/buildStatus/icon?job=docker/midPoint_container/3.9)](https://jenkins.testbed.tier.internet2.edu/buildStatus/icon?job=docker/midPoint_container/3.9)
 
 This repository contains sources for TIER-supported [midPoint](http://midpoint.evolveum.com) image.
 
@@ -6,7 +6,7 @@ The image contains the midPoint application along with some TIER-specific compon
 
 # Supported tags
 - latest
-- midPoint version-specific tags, e.g. 3.9, 3.9.1, 4.0, etc.
+- midPoint version-specific branches, e.g. 3.9, 3.9.1, 4.0, etc.
 
 # Content
 - the root directory contains build instructions for the `midpoint` image 

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<c:resource oid="4d70a0da-02dd-41cf-b0a1-00e75d3eaa15" 
+<!--
+  ~ Copyright (c) 2019 Evolveum and contributors
+  ~
+  ~ This work is dual-licensed under the Apache License 2.0
+  ~ and European Union Public License. See LICENSE file for details.
+  -->
+
+<c:resource oid="4d70a0da-02dd-41cf-b0a1-00e75d3eaa15"
     xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3"
     xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -42,7 +49,7 @@
 			<icscscriptedsql:testScriptFileName>/opt/midpoint/var/res/sis-persons/TestScript.groovy</icscscriptedsql:testScriptFileName>
 			<icscscriptedsql:schemaScriptFileName>/opt/midpoint/var/res/sis-persons/SchemaScript.groovy</icscscriptedsql:schemaScriptFileName>
 			
-			<icscscriptedsql:reloadScriptOnExecution>true</icscscriptedsql:reloadScriptOnExecution>
+			<icscscriptedsql:reloadScriptOnExecution>false</icscscriptedsql:reloadScriptOnExecution>
 			<!-- >icscscriptedsql:syncScriptFileName>/opt/midpoint/var/res/SyncScript.groovy</icscscriptedsql:syncScriptFileName -->
 
 			<icscscriptedsql:validConnectionQuery></icscscriptedsql:validConnectionQuery>

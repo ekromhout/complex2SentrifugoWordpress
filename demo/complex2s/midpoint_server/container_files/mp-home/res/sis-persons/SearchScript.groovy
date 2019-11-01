@@ -21,8 +21,10 @@
  * ====================
  * Portions Copyrighted 2013 ConnId.
  */
-import groovy.sql.Sql;
-import groovy.sql.DataSet;
+
+import groovy.sql.Sql
+import groovy.sql.DataSet
+import org.identityconnectors.framework.common.objects.*
 
 // Parameters:
 // The connector sends the following:
@@ -58,17 +60,90 @@ log.info("Entering "+action+" Script");
 def sql = new Sql(connection);
 def result = []
 def where = "";
+def sqlParams = null
 
 switch ( objectClass ) {
     case "__ACCOUNT__":
-    sql.eachRow("select uid, surname, givenName, fullName, mail from SIS_PERSONS", {result.add([
-	__UID__:it.uid, 
-	__NAME__:it.uid, 
-	uid:it.uid,
-	surname:it.surname,
-	givenName:it.givenName,
-	fullName:it.fullName,
-	mail:it.mail])} );
+
+    uidColumn = 'uid'
+    nameColumn = 'uid'
+
+    log.info("Building where clause, query {0}, uidcolumn {1}, nameColumn {2}", query, uidColumn, nameColumn)
+
+    String left = query?.get("left")
+    if (left != null) {
+      if (Uid.NAME.equals(left)) {
+          left = uidColumn
+      } else if (Name.NAME.equals(left)) {
+          left = nameColumn
+      }
+
+      String right = query.get("right")
+
+      String operation = query.get("operation")
+      switch (operation) {
+          case "CONTAINS":
+              right = '%' + right + '%'
+              break;
+          case "ENDSWITH":
+              right = '%' + right
+              break;
+          case "STARTSWITH":
+              right = right + '%'
+              break;
+      }
+
+      sqlParams = [:]
+      sqlParams.put(left, right)
+      right = ":" + left
+
+      def engine = new groovy.text.SimpleTemplateEngine()
+
+      def whereTemplates = [
+            CONTAINS          : ' $left ${not ? "not " : ""}like $right',
+            ENDSWITH          : ' $left ${not ? "not " : ""}like $right',
+            STARTSWITH        : ' $left ${not ? "not " : ""}like $right',
+            EQUALS            : ' $left ${not ? "<>" : "="} $right',
+            GREATERTHAN       : ' $left ${not ? "<=" : ">"} $right',
+            GREATERTHANOREQUAL: ' $left ${not ? "<" : ">="} $right',
+            LESSTHAN          : ' $left ${not ? ">=" : "<"} $right',
+            LESSTHANOREQUAL   : ' $left ${not ? ">" : "<="} $right'
+      ]
+
+      def wt = whereTemplates.get(operation)
+      if (wt != null) {
+        def binding = [left: left, right: right, not: query.get("not")]
+        def template = engine.createTemplate(wt).make(binding)
+        where = ' where ' + template.toString()
+        log.info("Where clause: {0}, with parameters {1}", where, sqlParams)
+      } else {
+        log.warn('Unsupported query: {0}, continuing without WHERE clause (worsening the performance)', query)
+        sqlParams = null
+        where = ''
+      }
+    }
+
+    q = 'select uid, surname, givenName, fullName, mail from SIS_PERSONS' + where
+
+    log.info('query = {0}', query)
+    log.info('sql = {0}', q)
+    log.info('sqlParams = {0}', sqlParams)
+   
+    def processRow = { row -> result.add([
+	__UID__:row.uid, 
+	__NAME__:row.uid, 
+	uid:row.uid,
+	surname:row.surname,
+	givenName:row.givenName,
+	fullName:row.fullName,
+	mail:row.mail])
+    }
+
+    if (sqlParams != null) {
+      sql.eachRow(sqlParams, q, processRow)
+    } else {
+      sql.eachRow(q, processRow)
+    }
     break
 
     default:

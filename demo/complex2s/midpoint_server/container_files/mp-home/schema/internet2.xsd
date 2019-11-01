@@ -26,7 +26,21 @@
     </xsd:annotation>
     <xsd:sequence>
         <xsd:element name="grouperName" type="xsd:string" minOccurs="0"/>
-        <xsd:element name="member" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="ldapDn" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>  
+
+  <xsd:complexType name="ArchetypeExtensionType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <a:extension ref="c:ArchetypeType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+        <xsd:element name="grouperNamePrefix" type="xsd:string" minOccurs="0"/>		<!-- e.g. ref:affiliation: -->
+        <xsd:element name="ldapRootDn" type="xsd:string" minOccurs="0"/>		<!-- e.g. ou=Affiliations,ou=Groups,dc=internet2,dc=edu -->
+        <xsd:element name="midPointNamePrefix" type="xsd:string" minOccurs="0"/>		<!-- e.g. affiliation_ -->
+        <xsd:element name="midPointDisplayNamePrefix" type="xsd:string" minOccurs="0"/>		<!-- e.g. Affiliation: -->
     </xsd:sequence>
   </xsd:complexType>  
 </xsd:schema>

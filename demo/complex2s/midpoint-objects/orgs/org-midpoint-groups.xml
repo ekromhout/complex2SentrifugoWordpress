@@ -7,7 +7,7 @@
   -->
 
 <org xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3"
-    oid="225e9360-0639-40ba-8a31-7f31bef067be">
-    <name>courses</name>
-    <displayName>Courses</displayName>
+    oid="4790ab69-7ef0-41a4-8992-78877f3beb23">
+    <name>midpoint-groups</name>
+    <displayName>midPoint groups</displayName>
 </org>

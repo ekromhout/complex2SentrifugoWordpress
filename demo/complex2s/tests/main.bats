@@ -78,7 +78,7 @@ load ../../../library
     search_and_check_object orgs courses
     search_and_check_object orgs departments
 
-    search_and_check_object resources "OpenLDAP (directory)"
+    search_and_check_object resources "LDAP (directory)"
     search_and_check_object resources "Grouper Resource"
     search_and_check_object resources "SQL SIS courses (sources)"
     search_and_check_object resources "SQL SIS persons (sources)"

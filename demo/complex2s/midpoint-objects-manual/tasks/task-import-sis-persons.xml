@@ -12,6 +12,9 @@
               xsi:type="c:ExtensionType">
       <mext:kind>account</mext:kind>
       <mext:objectclass>ri:AccountObjectClass</mext:objectclass>
+      <mext:tracing>
+          <interval>500</interval>
+      </mext:tracing>
    </extension>
    <taskIdentifier>1535407239440-0-1</taskIdentifier>
    <ownerRef oid="00000000-0000-0000-0000-000000000002"
