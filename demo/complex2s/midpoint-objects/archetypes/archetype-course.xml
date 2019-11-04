@@ -16,6 +16,16 @@
         <ext:midPointNamePrefix>course_</ext:midPointNamePrefix>
         <ext:midPointDisplayNamePrefix>Course: </ext:midPointDisplayNamePrefix>
     </extension>
+    <archetypePolicy>
+        <display>
+            <label>Course</label>
+            <pluralLabel>Courses</pluralLabel>
+            <icon>
+                <cssClass>fa fa-university</cssClass>
+                <color>teal</color>
+            </icon>
+        </display>
+    </archetypePolicy>
     <assignment>
         <targetRef oid="bcaec940-50c8-44bb-aa37-b2b5bb2d5b90" relation="org:default" type="c:RoleType" />     <!-- metarole-grouper-provided-group -->
     </assignment>
