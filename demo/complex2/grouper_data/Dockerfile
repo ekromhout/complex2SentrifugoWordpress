@@ -11,7 +11,7 @@ RUN yum install -y epel-release \
 COPY container_files/seed-data/ /seed-data/
 COPY container_files/conf/ /opt/grouper/grouper.apiBinary/conf/
 
-RUN mysql_install_db \
+RUN mysql_install_db --force \
     && chown -R mysql:mysql /var/lib/mysql/ \
     && sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/my.cnf \
     && sed -i 's/^\(log_error\s.*\)/# \1/' /etc/my.cnf \
