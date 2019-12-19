@@ -258,7 +258,7 @@
 					<expression>
 						<path>
 							declare namespace ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3";
-							$account/attributes/ri:uid
+							$projection/attributes/ri:uid
 						</path>
 					</expression>
 				</q:equal>
@@ -283,10 +283,6 @@
 			</reaction>
 			<reaction>
 				<situation>unmatched</situation>
-				<synchronize>true</synchronize>
-				<action>
-					<handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#addFocus</handlerUri>
-				</action>
 			</reaction>
 		</objectSynchronization>
         <objectSynchronization>
@@ -300,7 +296,7 @@
                 <script>
                     <code>
                         import javax.naming.ldap.*
-                        dn = new LdapName(basic.getAttributeValue(account, 'http://midpoint.evolveum.com/xml/ns/public/resource/instance-3', 'dn'))
+                        dn = new LdapName(basic.getAttributeValue(projection, 'http://midpoint.evolveum.com/xml/ns/public/resource/instance-3', 'dn'))
                         dn.startsWith(new LdapName('ou=Affiliations,ou=Groups,dc=internet2,dc=edu')) ||
                             dn.startsWith(new LdapName('ou=Courses,ou=Groups,dc=internet2,dc=edu')) ||
                             dn.startsWith(new LdapName('ou=generic,ou=Groups,dc=internet2,dc=edu')) ||
@@ -312,7 +308,7 @@
                 <q:equal>
                     <q:path>extension/ldapDn</q:path>
                     <expression>
-                        <path>$shadow/attributes/ri:dn</path>
+                        <path>$projection/attributes/ri:dn</path>
                     </expression>
                 </q:equal>
             </correlation>

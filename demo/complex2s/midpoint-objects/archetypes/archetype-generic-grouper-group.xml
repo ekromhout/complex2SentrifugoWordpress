@@ -16,6 +16,16 @@
         <ext:midPointNamePrefix>generic_</ext:midPointNamePrefix>
         <ext:midPointDisplayNamePrefix></ext:midPointDisplayNamePrefix>
     </extension>
+    <archetypePolicy>
+        <display>
+            <label>Generic Grouper Group</label>
+            <pluralLabel>Generic Grouper Groups</pluralLabel>
+            <icon>
+                <cssClass>fa fa-users</cssClass>
+                <color>lightcoral</color>
+            </icon>
+        </display>
+    </archetypePolicy>
     <assignment>
         <targetRef oid="bcaec940-50c8-44bb-aa37-b2b5bb2d5b90" relation="org:default" type="c:RoleType" />     <!-- metarole-grouper-provided-group -->
     </assignment>

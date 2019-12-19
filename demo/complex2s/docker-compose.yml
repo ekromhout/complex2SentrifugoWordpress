@@ -157,16 +157,19 @@ services:
     networks:
      - net
     volumes:
-     - source_data:/var/lib/mysql
+     - source_mysql:/var/lib/mysql
+     - source_data:/var/lib/mysqlmounted
+    environment:
+     - CREATE_NEW_DATABASE=if_needed
 
-  targets:
-    build: ./targets/
-    ports:
-     - 23306:389
-    networks:
-     - net
-    volumes:
-     - target_data:/var/lib/mysql
+#  targets:
+#    build: ./targets/
+#    ports:
+#     - 23306:389
+#    networks:
+#     - net
+#    volumes:
+#     - target_data:/var/lib/mysql
 
   midpoint_data:
     image: tier/mariadb:mariadb10
@@ -299,6 +302,7 @@ secrets:
 volumes:
   grouper_data:
   source_data:
+  source_mysql:
   target_data:
   ldap:
   midpoint_data:

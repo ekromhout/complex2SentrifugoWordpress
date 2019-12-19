@@ -13,6 +13,16 @@
     <extension>
         <ext:ldapRootDn>ou=midpoint,ou=Groups,dc=internet2,dc=edu</ext:ldapRootDn>
     </extension>
+    <archetypePolicy>
+        <display>
+            <label>midPoint Group</label>
+            <pluralLabel>midPoint Groups</pluralLabel>
+            <icon>
+                <cssClass>fa fa-users</cssClass>
+                <color>darkgviolet</color>
+            </icon>
+        </display>
+    </archetypePolicy>
     <assignment>
         <targetRef oid="8da46694-bd71-4e1e-bfd7-73865ae2ea9a" relation="org:default" type="c:RoleType" />     <!-- metarole-ldap-group -->
     </assignment>

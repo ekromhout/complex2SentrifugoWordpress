@@ -107,6 +107,30 @@
                         </set>
                     </target>
                 </inbound>
+                <inbound>
+                    <strength>strong</strength>
+                    <expression>
+                        <assignmentTargetSearch>
+                            <targetType>ArchetypeType</targetType>
+                            <oid>958da09c-fefb-11e9-892d-975972472527</oid>     <!--  archetype-academic-person -->
+                            <assignmentProperties>
+                                <subtype>grouper-basic</subtype>
+                            </assignmentProperties>
+                        </assignmentTargetSearch>
+                    </expression>                            
+                    <target>
+                        <path>assignment</path>
+                        <set>
+                            <condition>
+                                <script>
+                                    <code>
+                                        assignment.subtype.contains('grouper-basic')
+                                    </code>
+                                </script>
+                            </condition>
+                        </set>
+                    </target>
+                </inbound>
 			</attribute>
             <attribute>
                 <ref>ri:fullName</ref>
@@ -158,7 +182,7 @@
 					<expression>
 						<path>
 							declare namespace ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3";
-							$account/attributes/ri:uid
+							$projection/attributes/ri:uid
 						</path>
 					</expression>
 				</q:equal>

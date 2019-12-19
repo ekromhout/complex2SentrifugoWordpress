@@ -147,9 +147,7 @@
                 <q:equal>
                     <q:path>extension/grouperName</q:path>
                     <expression>
-                        <path>
-                            $account/attributes/name
-                        </path>
+                        <path>$projection/attributes/name</path>
                     </expression>
                 </q:equal>
             </correlation>
